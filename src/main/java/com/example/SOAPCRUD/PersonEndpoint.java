@@ -13,7 +13,7 @@ public class PersonEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getPersonRequest")
     @ResponsePayload
-    public GetPersonResponse getHello(@RequestPayload GetPersonRequest request) {
+    public GetPersonResponse getPerson(@RequestPayload GetPersonRequest request) {
         GetPersonResponse response = new GetPersonResponse();
         response.setName(request.getName());
         response.setAge(request.getAge());
