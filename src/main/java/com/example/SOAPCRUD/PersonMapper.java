@@ -1,7 +1,9 @@
 package com.example.SOAPCRUD;
 
 import io.spring.guides.gs_producing_web_service.*;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PersonMapper {
 
     public GetPersonResponse mapToPersonResponse(Person person) {
