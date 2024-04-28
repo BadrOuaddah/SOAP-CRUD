@@ -14,10 +14,12 @@ public class PersonEndpoints {
     private static final String NAMESPACE_URI = "http://spring.io/guides/gs-producing-web-service";
 
     private final PersonRepository personRepository;
+    private final PersonMapper personMapper;
 
     @Autowired
-    public PersonEndpoints(PersonRepository personRepository) {
+    public PersonEndpoints(PersonRepository personRepository, PersonMapper personMapper) {
         this.personRepository = personRepository;
+        this.personMapper = personMapper;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addPersonRequest")
@@ -45,9 +47,7 @@ public class PersonEndpoints {
         Optional<Person> personOptional = personRepository.findById((long) request.getId());
 
         if (personOptional.isPresent()) {
-            response.setName(personOptional.get().getName());
-            response.setAge(personOptional.get().getAge());
-            response.setCity(personOptional.get().getCity());
+            response = personMapper.mapToPersonResponse(personOptional.get());
         } else {
             System.out.println("Person not found with id : " + request.getId());
         }
@@ -69,7 +69,6 @@ public class PersonEndpoints {
         } else {
             response.setStatus(Status.FAILURE);
         }
-
         return response;
     }
 }
