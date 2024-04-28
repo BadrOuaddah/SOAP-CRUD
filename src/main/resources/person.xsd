@@ -12,7 +12,9 @@
     <xs:element name="getPersonResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="person" type="tns:Person"/>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="age" type="xs:integer"/>
+                <xs:element name="city" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

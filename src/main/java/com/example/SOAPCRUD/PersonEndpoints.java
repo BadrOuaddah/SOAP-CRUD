@@ -37,7 +37,6 @@ public class PersonEndpoints {
         return response;
     }
 
-    // TODO: show return object when use get method !
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getPersonRequest")
     @ResponsePayload
     public GetPersonResponse getPerson(@RequestPayload GetPersonRequest request) {
@@ -46,7 +45,9 @@ public class PersonEndpoints {
         Optional<Person> personOptional = personRepository.findById((long) request.getId());
 
         if (personOptional.isPresent()) {
-            response.setPerson(response.getPerson());
+            response.setName(personOptional.get().getName());
+            response.setAge(personOptional.get().getAge());
+            response.setCity(personOptional.get().getCity());
         } else {
             System.out.println("Person not found with id : " + request.getId());
         }
