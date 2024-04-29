@@ -22,7 +22,6 @@
     <xs:element name="addPersonRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="id" type="xs:int"/>
                 <xs:element name="name" type="xs:string"/>
                 <xs:element name="age" type="xs:integer"/>
                 <xs:element name="city" type="xs:string"/>
@@ -31,6 +30,28 @@
     </xs:element>
 
     <xs:element name="addPersonResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int"/>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="age" type="xs:integer"/>
+                <xs:element name="city" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updatePersonRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int"/>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="age" type="xs:integer"/>
+                <xs:element name="city" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updatePersonResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="id" type="xs:int"/>

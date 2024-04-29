@@ -39,6 +39,26 @@ public class PersonEndpoints {
         return response;
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "updatePersonRequest")
+    @ResponsePayload
+    public UpdatePersonResponse updatePerson(@RequestPayload UpdatePersonRequest request) throws Exception {
+        UpdatePersonResponse response = new UpdatePersonResponse();
+        personRepository.findById((long) request.getId()).orElseThrow(() -> new Exception("Person not found with id : " + request.getId()));
+        response.setId(request.getId());
+        response.setName(request.getName());
+        response.setAge(request.getAge());
+        response.setCity(request.getCity());
+
+        Person person = new Person();
+        person.setId((long) request.getId());
+        person.setName(request.getName());
+        person.setAge(request.getAge());
+        person.setCity(request.getCity());
+        personRepository.save(person);
+
+        return response;
+    }
+
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getPersonRequest")
     @ResponsePayload
     public GetPersonResponse getPerson(@RequestPayload GetPersonRequest request) {
