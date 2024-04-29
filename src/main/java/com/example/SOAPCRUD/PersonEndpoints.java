@@ -41,20 +41,15 @@ public class PersonEndpoints {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "updatePersonRequest")
     @ResponsePayload
-    public UpdatePersonResponse updatePerson(@RequestPayload UpdatePersonRequest request) throws Exception {
+    public UpdatePersonResponse updatePerson(@RequestPayload UpdatePersonRequest request) {
         UpdatePersonResponse response = new UpdatePersonResponse();
-        personRepository.findById((long) request.getId()).orElseThrow(() -> new Exception("Person not found with id : " + request.getId()));
-        response.setId(request.getId());
-        response.setName(request.getName());
-        response.setAge(request.getAge());
-        response.setCity(request.getCity());
+        Optional<Person> personOptional = personRepository.findById((long) request.getId());
 
-        Person person = new Person();
-        person.setId((long) request.getId());
-        person.setName(request.getName());
-        person.setAge(request.getAge());
-        person.setCity(request.getCity());
-        personRepository.save(person);
+        if (personOptional.isPresent()) {
+            response = personMapper.mapToUpdatePersonResponse(personOptional.get());
+        } else {
+            System.out.println("Person not found with id : " + request.getId());
+        }
 
         return response;
     }

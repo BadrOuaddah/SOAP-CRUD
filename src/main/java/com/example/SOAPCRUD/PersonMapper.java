@@ -16,6 +16,7 @@ public class PersonMapper {
 
     public UpdatePersonResponse mapToUpdatePersonResponse(Person person) {
         UpdatePersonResponse response = new UpdatePersonResponse();
+        response.setId(Math.toIntExact(person.getId()));
         response.setName(person.getName());
         response.setAge(person.getAge());
         response.setCity(person.getCity());
