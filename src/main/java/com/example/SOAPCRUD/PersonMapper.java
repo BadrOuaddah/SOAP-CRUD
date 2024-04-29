@@ -14,4 +14,12 @@ public class PersonMapper {
         return response;
     }
 
+    public UpdatePersonResponse mapToUpdatePersonResponse(Person person) {
+        UpdatePersonResponse response = new UpdatePersonResponse();
+        response.setName(person.getName());
+        response.setAge(person.getAge());
+        response.setCity(person.getCity());
+        return response;
+    }
+
 }
