@@ -62,7 +62,7 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="DeletePersonRequest">
+    <xs:element name="deletePersonRequest">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="id" type="xs:int"/>
@@ -70,7 +70,7 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="DeletePersonResponse">
+    <xs:element name="deletePersonResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="status" type="tns:Status"/>
