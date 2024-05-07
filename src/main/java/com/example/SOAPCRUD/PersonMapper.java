@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PersonMapper {
 
-    public GetPersonResponse mapToPersonResponse(Person person) {
+    public GetPersonResponse mapToGetPersonResponse(Person person) {
         GetPersonResponse response = new GetPersonResponse();
         response.setName(person.getName());
         response.setAge(person.getAge());

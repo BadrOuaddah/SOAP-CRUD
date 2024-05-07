@@ -64,7 +64,7 @@ public class PersonEndpoints {
         Optional<Person> personOptional = personRepository.findById((long) request.getId());
 
         if (personOptional.isPresent()) {
-            response = personMapper.mapToPersonResponse(personOptional.get());
+            response = personMapper.mapToGetPersonResponse(personOptional.get());
         } else {
             System.out.println("Person not found with id : " + request.getId());
         }
