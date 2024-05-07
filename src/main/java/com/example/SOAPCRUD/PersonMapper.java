@@ -23,4 +23,13 @@ public class PersonMapper {
         return response;
     }
 
+    public AddPersonResponse mapToAddPersonResponse(Person person) {
+        AddPersonResponse response = new AddPersonResponse();
+        response.setId(Math.toIntExact(person.getId()));
+        response.setName(person.getName());
+        response.setAge(person.getAge());
+        response.setCity(person.getCity());
+        return response;
+    }
+
 }

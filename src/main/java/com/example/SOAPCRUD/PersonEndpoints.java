@@ -34,9 +34,9 @@ public class PersonEndpoints {
         person.setName(request.getName());
         person.setAge(request.getAge());
         person.setCity(request.getCity());
-        personRepository.save(person);
+        Person savedPerson = personRepository.save(person);
 
-        return response;
+        return personMapper.mapToAddPersonResponse(savedPerson);
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "updatePersonRequest")
@@ -46,7 +46,9 @@ public class PersonEndpoints {
         Optional<Person> personOptional = personRepository.findById((long) request.getId());
 
         if (personOptional.isPresent()) {
-            response = personMapper.mapToUpdatePersonResponse(personOptional.get());
+            Person savedPerson = personRepository.save(personOptional.get());
+            response = personMapper.mapToUpdatePersonResponse(savedPerson);
+
         } else {
             System.out.println("Person not found with id : " + request.getId());
         }
@@ -70,7 +72,6 @@ public class PersonEndpoints {
         return response;
     }
 
-    // TODO: Error HTTP 404 !
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deletePersonRequest")
     @ResponsePayload
     public DeletePersonResponse deletePerson(@RequestPayload DeletePersonRequest request) {
